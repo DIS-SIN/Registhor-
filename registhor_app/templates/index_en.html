@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% include 'includes/_head.html' %}
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href= "{{ url_for('static', filename='style.css') }}" type="text/css" />
+	</head>
+	<body>
+		<div class="container">
+			<h1>Welcome to Registhor</h1>
+			
+			<!-- Navbar for tabs --->
+			<ul class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#comments">Comments</a></li>
+				<li><a data-toggle="tab" href="#departments">Departments</a></li>
+				<li><a data-toggle="tab" href="#evalhalla">Evalhalla</a></li>
+				<li><a data-toggle="tab" href="#offerings">Offerings</a></li>
+				<li><a data-toggle="tab" href="#registrations">Registrations</a></li>
+				<li><a data-toggle="tab" href="#tombstone">Tombstone</a></li>
+			</ul>
+			
+			<!-- Tabs' contents -->
+			<div class="tab-content">
+				<div id="comments" class="tab-pane active">
+					<div class="panel panel-danger" style="margin: 0 !important;">
+						<div class="panel-heading">NOTE</div>
+						<div class="panel-body">Comment routes are disabled pending the results of our privacy impact assessment (PIA).</div>
+					</div>
+					
+					<br/ >
+					<h2>Course Codes</h2>
+					<h4>To get the course codes that match the filters' criteria, use route:</h4>
+					<p>/api/v1/comments/course-codes/<code>question_type</code>?key=<code>YOUR_API_KEY</code>&amp;department_code=<code>CES</code>[&amp;fiscal_year=<code>1960-61</code>]</p>
+					<p>
+						Accepted values for 'question_type':
+						<ul>
+							<li>general</li>
+							<li>improvement</li>
+							<li>technical</li>
+						</ul>
+					</p>
+					<p>Note: Fiscal year in standard TBS hyphenated format.</p>
+					
+					<br/ >
+					<h2>Counts</h2>
+					<h4>To get the number of comments a course has received by stars, use route:</h4>
+					<p>/api/v1/comments/counts/<code>question_type</code>?key=<code>YOUR_API_KEY</code>&amp;department_code=<code>CES</code>[&amp;course_code=<code>D101</code>][&amp;fiscal_year=<code>1960-61</code>]</p>
+					<p>
+						Accepted values for 'question_type':
+						<ul>
+							<li>general</li>
+							<li>improvement</li>
+							<li>technical</li>
+						</ul>
+					</p>
+					<p>Note: Fiscal year in standard TBS hyphenated format.</p>
+					
+					<br/ >
+					<h2>Text</h2>
+					<h4>To get the raw text and attributes of comments a course has received, use route:</h4>
+					<p>/api/v1/comments/text/<code>question_type</code>?key=<code>YOUR_API_KEY</code>&amp;department_code=<code>CES</code>&amp;limit=<code>20</code>[&amp;course_code=<code>D101</code>][&amp;fiscal_year=<code>1960-61</code>][&amp;stars=<code>5</code>][&amp;offset=<code>0</code>][&amp;lang=<code>fr</code>]</p>
+					<p>
+						Accepted values for 'question_type':
+						<ul>
+							<li>general</li>
+							<li>improvement</li>
+							<li>technical</li>
+						</ul>
+					</p>
+					<p>Note: Accepted values for 'stars' are integers 1 through 5, inclusively.</p>
+					<p>Note: Fiscal year in standard TBS hyphenated format.</p>
+				</div>
+				
+				<div id="departments" class="tab-pane">
+					<br/ >
+					<h2>Mandatory Courses</h2>
+					<h4>To get all active courses and whether a department considers them mandatory for its employees, use route:</h4>
+					<p>/api/v1/departments/mandatory-courses?key=<code>YOUR_API_KEY</code>&amp;department_code=<code>CES</code></p>
+					<p>Note: This route also accepts methods DELETE and POST when accompanied by a JSON object of format {"department_code":"CES","course_code":"D101"}.</p>
+				</div>
+				
+				<div id="evalhalla" class="tab-pane">
+					<br/ >
+					<h2>Cities</h2>
+					<h4>To get all cities ever inputted in GCcampus by learners, use route:</h4>
+					<p>/api/v1/evalhalla/cities?key=<code>YOUR_API_KEY</code>[&amp;lang=<code>fr</code>]</p>
+					
+					<br/ >
+					<h2>Classifications</h2>
+					<h4>To get all classifications ever inputted in GCcampus by learners, use route:</h4>
+					<p>/api/v1/evalhalla/classifications?key=<code>YOUR_API_KEY</code></p>
+					
+					<br/ >
+					<h2>Departments</h2>
+					<h4>To get all departments ever inputted in GCcampus by learners, use route:</h4>
+					<p>/api/v1/evalhalla/departments?key=<code>YOUR_API_KEY</code>[&amp;lang=<code>fr</code>]</p>
+				</div>
+				
+				<div id="offerings" class="tab-pane">
+					<br/ >
+					<h2>Counts by City</h2>
+					<h4>To get the number of offerings by city taking place on a given date, or within a date range, use route:</h4>
+					<p>/api/v1/offerings/counts-by-city?key=<code>YOUR_API_KEY</code>&amp;date_1=<code>1960-01-01</code>[&amp;date_2=<code>1960-01-03</code>][&amp;business_line=<code>Digital Academy</code>][&amp;clients_only=<code>true</code>][&amp;course_code=<code>D101</code>][&amp;exclude_cancelled=<code>true</code>][&amp;instructor_name=<code>Paula</code>][&amp;lang=<code>fr</code>]</p>
+					<p>Note: Dates in standard YYYY-MM-DD ISO format.</p>
+					<p>Note: Parameters 'clients_only' and 'exclude_cancelled' are boolean.</p>
+					
+					<br/ >
+					<h2>Offering Information</h2>
+					<h4>To get all offerings taking place on a given date, or within a date range, use route:</h4>
+					<p>/api/v1/offerings/offering-information?key=<code>YOUR_API_KEY</code>&amp;date_1=<code>1960-01-01</code>[&amp;date_2=<code>1960-01-03</code>][&amp;business_line=<code>Digital Academy</code>][&amp;clients_only=<code>true</code>][&amp;course_code=<code>D101</code>][&amp;exclude_cancelled=<code>true</code>][&amp;instructor_name=<code>Paula</code>][&amp;limit=<code>20</code>][&amp;offset=<code>0</code>][&amp;lang=<code>fr</code>]</p>
+					<p>Note: Dates in standard YYYY-MM-DD ISO format.</p>
+					<p>Note: Parameters 'clients_only' and 'exclude_cancelled' are boolean.</p>
+				</div>
+				
+				<div id="registrations" class="tab-pane">
+					<br/ >
+					<h2>Active Courses</h2>
+					<h4>To get all active course titles and associated course codes from the last two fiscal years, use route:</h4>
+					<p>/api/v1/registrations/course-codes?key=<code>YOUR_API_KEY</code>[&amp;lang=<code>fr</code>]</p>
+					
+					<br/ >
+					<h2>Active Departments</h2>
+					<h4>To get all active department names and associated department codes from the last two fiscal years, use route:</h4>
+					<p>/api/v1/registrations/department-codes?key=<code>YOUR_API_KEY</code>[&amp;lang=<code>fr</code>]</p>
+					
+					<br/ >
+					<h2>Training Locations</h2>
+					<h4>To get all locations where a department's learners attended training this fiscal year, use route:</h4>
+					<p>/api/v1/registrations/training-locations?key=<code>YOUR_API_KEY</code>&amp;department_code=<code>CES</code></p>
+				</div>
+				
+				<div id="tombstone" class="tab-pane">
+					<br/ >
+					<h2>All</h2>
+					<h4>To get all tombstone information for a course, use route:</h4>
+					<p>/api/v1/tombstone/<code>course_code</code>?key=<code>YOUR_API_KEY</code></p>
+					
+					<br/ >
+					<h2>Specific</h2>
+					<h4>To get a specific value of tombstone information for a course, use route:</h4>
+					<p>/api/v1/tombstone/<code>course_code</code>/<code>tombstone_value</code>?key=<code>YOUR_API_KEY</code></p>
+					<p>
+						Accepted values for 'tombstone_value':
+						<ul>
+							<li>description-en</li>
+							<li>description-fr</li>
+							<li>business-type</li>
+							<li>type-de-livraison</li>
+							<li>provider</li>
+							<li>fournisseur</li>
+							<li>displayed-on-gccampus</li>
+							<li>affiche-sur-gccampus</li>
+							<li>duration</li>
+							<li>duree</li>
+							<li>main-topic</li>
+							<li>sujet-principal</li>
+							<li>business-line</li>
+							<li>ligne-d-affaires</li>
+							<li>required-training</li>
+							<li>formation-requise</li>
+							<li>communities</li>
+							<li>communautes</li>
+							<li>point-of-contact</li>
+							<li>point-de-contact</li>
+							<li>director</li>
+							<li>directeur</li>
+							<li>program-manager</li>
+							<li>gestionnaire-de-programme</li>
+							<li>project-lead</li>
+							<li>chef-de-projet</li>
+						</ul>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

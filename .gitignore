@@ -1,0 +1,7 @@
+# Files
+environ_vars.txt
+TODO.txt
+
+# Directories
+**/__pycache__/
+**/.ipynb_checkpoints/

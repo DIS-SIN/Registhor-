@@ -1,0 +1,47 @@
+"""Mappings to clean junk from DB prior to displaying info to users."""
+
+JUNK_CITIES = {
+	'À DETERMINER',
+	'BRUSSELS-BREU',
+	'BRUSSELS-NATO',
+	'CHINA',
+	'CHINE',
+	'COLORADO',
+	'GENEVA - WTO',
+	'GUATEMALA',
+	'HORS DU CANADA',
+    'INCONNU',
+    'INCONNU, Inconnu',
+	'JORDAN_JORDANIE',
+	'MEXICO',
+	'MEXIQUE',
+	'NATIONAL CAPITAL REGION (NCR), NCR',
+	'NATIONAL CAPITAL REGION (NCR), NCR/RCN',
+	'NATIONAL CAPITAL REGION (NCR), RCN',
+	'NATIONAL CAPITAL REGION, Ontario',
+	'NCR/RCN, NCR',
+	'NCR/RCN, NCR/RCN',
+	'NCR/RCN, RCN',
+	'OUTSIDE CANADA',
+	'RÉGION DE LA CAPITALE NATIONALE (RCN), NCR/RCN',
+	'RÉGION DE LA CAPITALE NATIONALE (RCN), Ontario',
+	'SVC NCR/RCN',
+	'SVC ONTARIO/ONTARIO',
+	'SVC QUÉBEC/QUÉBEC',
+	'SVC WESTERN/OUEST',
+	'TBD',
+	'Unknown',
+	'UNKNOWN',
+	'VIENNA VOSCE',
+	'VIENNA-MBFR',
+	'WEBCAST - WINNIPEG, Manitoba'
+}
+
+JUNK_DEPTS = {
+	'Essai Gratuit',
+	'Free Trial',
+	'Inconnu',
+	'_Obsolete_Autre',
+	'_Obsolete_Other',
+	'Unknown'
+}
